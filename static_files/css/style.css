@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+body{
+    background-color:#EEE2F3;
+    color: #1C0D1B;
+    margin-left: 0;
+    margin-right: 0;
+    height: 100vh;
+    /* overflow-x: hidden; */
+}
+
+.purp{
+   background-color: #1C0D1B;
+   color: #EEE2F3;
+}
+
+.kaushan{
+   font-family: 'Kaushan Script', cursive;
+}
+
+a{
+   text-decoration: none;
+   /* color: #1C0D1B; */
+}
+
+.backgroundimage{
+   width: 100%;
+   height: 50vh;
+   overflow: hidden;
+   object-fit: cover;
+}
+
+.textoverlay{
+   position: absolute;
+   top: 32.5%;
+   left: 42.5%;
+}
+
+.overlap{
+   /* display: flex; */
+   /* flex-wrap: wrap; */
+   /* background-color: #1C0D1B; */
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(0deg, rgba(28,13,27,0.9), rgba(28,13,27,0.9)), url("../img/background.jpg");
+   /* background-image: url('../img/background.jpg'); */
+   /* background-repeat: no-repeat; */
+   /* background-position: 50% 50%; */
+   background-size: cover;
+
+   /* align-items: center; */
+}
+
+.animatepop{
+   animation-duration: 0.3s;
+   animation-name: animate-pop;
+   animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
+}
+
+.demo-wrap {
+   overflow: hidden;
+   position: relative;
+ }
+ 
+ .demo-bg {
+   opacity: 0.6;
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: auto;
+ }
+ 
+ .demo-content {
+   position: relative;
+ }
+
+
+.navbar-custom{
+   
+    /* background-color:#000814; */
+    background: linear-gradient(to bottom, #EEE2F3 0%, #EEE2F3 100%);
+    color: #1C0D1B; 
+    position: sticky;
+    top: 0;
+}
+
+.navbar-custom ul li{
+    font-weight: 600;
+}
+
+.hoverscroll{
+    position: relative;
+    display: inline-block;
+}
+
+.hoverscroll:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #1C0D1B;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hoverscroll:hover:after {
+    transform: scaleX(1);
+    color: #1C0D1B;
+    transform-origin: bottom left;
+}
+
+@keyframes animate-pop {
+   0% {
+     opacity: 0;
+     transform: scale(0.5, 0.5);
+   }
+ 
+   100% {
+     opacity: 1;
+     transform: scale(1, 1);
+   }
+ }
+
+.shine {
+	background: #fff -webkit-gradient(linear, left top, right top, from(#fff), to(#fff), color-stop(0.5, #000)) 0 0 no-repeat;
+	-webkit-background-size: 150px;
+	color: #f2f7f236;
+	-webkit-background-clip: text;
+	-webkit-animation-name: shine;
+	-webkit-animation-duration: 5s;
+	-webkit-animation-iteration-count: infinite;
+	/* text-shadow: 0 0px 0px #fafffaef; */
+}
+
+.chrome {
+	background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+	background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #fff 50%, transparent 60%, transparent 100%);
+	-webkit-background-size: 200px;
+	color: rgba(255, 255, 255, 0.3);
+	-webkit-background-clip: text;
+	-webkit-animation-name: shine;
+	-webkit-animation-duration: 5s;
+	-webkit-animation-iteration-count: infinite;
+	text-shadow: 0 0px 0px rgba(255, 255, 255, 0.5);
+}
+
+@-webkit-keyframes shine {
+	0%, 10% {
+		background-position: -1000px;
+	}
+	20% {
+		background-position: top left;
+	}
+	90% {
+		background-position: top right;
+	}
+	100% {
+		background-position: 1000px;
+	}
+}
+
+@-webkit-keyframes fadeInLeft {
+    0% {
+       opacity: 0;
+       -webkit-transform: translateX(-30px);
+    }
+    100% {
+       opacity: 1;
+       -webkit-transform: translateX(0);
+    }
+ }
+ 
+ @keyframes fadeInLeft {
+    0% {
+       opacity: 0;
+       transform: translateX(-30px);
+    }
+    100% {
+       opacity: 1;
+       transform: translateX(0);
+    }
+ }
+ 
+ .fadeInLeft {
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-iteration-count: 1;
+    animation-fill-mode: both;
+ } 
+
+
+ @-webkit-keyframes fadeInBottom {
+    0% {
+       opacity: 0;
+       -webkit-transform: translateY(20px);
+    }
+    100% {
+       opacity: 1;
+       -webkit-transform: translateY(0);
+    }
+ }
+ 
+ @keyframes fadeInBottom {
+    0% {
+       opacity: 0;
+       transform: translateY(20px);
+    }
+    100% {
+       opacity: 1;
+       transform: translateY(0);
+    }
+ }
+ 
+ .fadeInBottom {
+    -webkit-animation-name: fadeInBottom;
+    animation-name: fadeInBottom;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+ } 
+
+ .experience-link{
+   
+ }
+ /* .experience-link:hover{
+   color: #1C0D1B;
+   background-color: #F2F7F2;
+ } */
+ .experience-link a:hover{
+   color:#F2F7F2;
+ }
