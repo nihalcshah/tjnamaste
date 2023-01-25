@@ -1,0 +1,86 @@
+<%- include('./partials/head') %>
+
+<body class="fonts">
+    
+    <%- include('./partials/nav') %>
+    
+    <section class="container" style="">
+        <h3>Hi <%= name %></h3>
+        <br>
+        <div class="row">
+            <form action="addevent" class=" align-items-center col-6" method="POST">
+                <h4>Add an Event</h4>
+                <select class="form-select form-select-sm mb-3" name="eventtype" id="eventtype" aria-label=".form-select-sm example">
+                    <option selected>Choose an Event Type</option>
+                    <option value="Senior Girls">Senior Girls</option>
+                    <option value="UGirls">UGirls</option>
+                    <option value="Senior Guys">Senior Guys</option>
+                    <option value="Junior Guys">Junior Guys</option>
+                    <option value="Underclassmen Guys">Underclassmen Guys</option>
+                    <option value="General">General</option>
+                </select>
+                <label for="eventname" class="form-label">Event Name</label>
+                <input type="text" name="eventname" id="eventname" class="form-control mb-3">
+                <label for="date" class="col-1 col-form-label">Date</label>
+                <input id="date" name="date" class="form-control" type="date" />
+                <br/>
+                <button class="align-items-center btn btn-outline-dark text-center" type="submit"> Submit  </button>
+            </form>
+            <div class="col-6">
+                <h4>Remove an Event</h4>
+                <% list.forEach(function(elem){ %>
+                    <div class="row eventlists" id="<%= elem[1] %>">
+                        <div class="col-6 mt-2">
+                            <%= elem[0] %>
+                        </div>
+                        <div class="col-6 my-0">
+                            <button type="" id="<%= elem[1] %>" class="btn btn-link" onclick="remove(this.id)">Remove</button>
+                        </div>
+                    </div>
+                    <br>
+                <% }); %>
+                <div id="empty" style="display: none;" >
+                    There are no upcoming events.
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <script type="text/javascript">
+        window.addEventListener("load", (event) => {
+            const eventlists = document.getElementsByClassName("eventlists")
+            if(eventlists.length>0){
+                document.getElementById("empty").style.display = "none"
+            }else{
+                document.getElementById("empty").style.display = "inline"
+            }
+            console.log(eventlists.length)
+        });
+        async function remove(eventname){
+            const info = { "event": eventname};
+            const part = document.getElementById(eventname);
+            const eventlists = document.getElementsByClassName("eventlists")
+            if(eventlists.length>0){
+                document.getElementById("empty").style.display = "none"
+            }else{
+                document.getElementById("empty").style.display = "inline"
+            }
+            console.log(eventlists.length)
+            part.style.display = "none";
+            const response = await fetch(
+                "/remove",
+                {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: JSON.stringify(info)
+                } 
+            );
+            const data = await response.json();
+            
+            
+        }
+    </script>
+</body>
