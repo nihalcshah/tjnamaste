@@ -1,0 +1,119 @@
+<%- include('./partials/head') %>
+
+    <script>
+
+    </script>
+
+    <meta charset="utf-8" />
+
+    <body style=" overflow-x: hidden;">
+        <%- include('./partials/nav') %>
+            <div class="mt-2 tickets">
+                <h1 class="">
+                    Book iNite Tickets
+                </h1>
+                <hr />
+                <form action="complete" method="get">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h6>Name</h6>
+                            <input type="text" class="enter" name="name" style="">
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row ">
+                        <div class="col-9">
+                            <h6>Number of Tickets</h6>
+                            <div id="ticketnum" class="h5">0</div>
+                        </div>
+                        <div class="col-1 align-self-center">
+                            <select onchange="changetixnum()" id="ticknumselect" name="ticketcount" class="rounded-50 form-select"
+                                style="background-color: black; color: white;">
+                                <option value="0" selected disabled><b>0</b></option>
+                                <option value="1" ><b>1</b></option>
+                                <option value="2"><b>2</b></option>
+                                <option value="3"><b>3</b></option>
+                                <option value="4"><b>4</b></option>
+                                <option value="5"><b>5</b></option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row" id="seats">
+                        
+                    </div>
+                    <div class="row confirmbutton text-center" id="confirmbutton">
+                        <p>You have selected seats <b id="seatsconfirmation"></b>. Once you confirm, you will not be able change the selected seats.</p>
+                        <button class="btn btn-outline-dark text-center mx-auto" type="submit">Confirm Seats</button>
+                    </div>
+                    
+                </form>
+            </div>
+            <script>
+                var validtix;
+                var numtix;
+                var seats = [];
+                $(document).ready(function() {
+                    $(window).keydown(function(event){
+                        if(event.keyCode == 13) {
+                            event.preventDefault();
+                            return false;
+                        }
+                    });
+                });
+                function changetixnum() {
+                    console.log("Sd")
+                    numtix = document.getElementById("ticknumselect").value;
+                    document.getElementById("ticketnum").innerHTML = numtix;
+                    $("#seats").html(
+                        ""
+                    );
+                    for (var i = 1; i <= Number(numtix); i++) {
+                        console.log("sdf")
+                        $("#seats").append(
+                            '<div class="row "><div class="col-7"><h5>Seat ' + i + '</h5><div id="availability' + i + '" class="">Please enter a seat</div></div><div class="col-5 align-self-center"><input type="text" name="seat'+i+'" onkeyup="checkvalid(this)" id="seat' + i + '" class="enter"/></div></div>'
+                        );
+                    }
+                }
+                async function checkvalid(e){
+                    document.getElementById("confirmbutton").style['display'] = "none";
+                    if(e.value.length===3){
+                        const info = {"seat": e.value};
+                        
+                        const response = await fetch(
+                            "http://localhost:8080/validity",
+                            {
+                                method: 'POST',
+                                headers: {
+                                'Content-Type': 'application/json'
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                body: JSON.stringify(info)
+                            } 
+                        );
+                        valret = await response.json();
+                        if(valret['valid']===true){
+                            document.getElementById("availability"+e.id.substring(e.id.length - 1)).innerHTML = "Available";
+                            document.getElementById("availability"+e.id.substring(e.id.length - 1)).style['color'] = "green";
+                        }else{
+                            document.getElementById("availability"+e.id.substring(e.id.length - 1)).innerHTML = "Not available";
+                            document.getElementById("availability"+e.id.substring(e.id.length - 1)).style['color'] = "red";
+                        }
+                        var wholestring=""
+                        for(var i=1; i<=numtix; i++){
+                            if(document.getElementById("availability"+i).innerHTML == "Available"){
+                                ;
+                            }else{
+                                return;
+                            }
+                        }
+                        for(var i=1; i<=numtix; i++){
+                            wholestring+=", "+document.getElementById("seat"+i).value;
+                            seats.push(document.getElementById("seat"+i).value)
+                        }
+                        document.getElementById("confirmbutton").style['display'] = "block";
+                        document.getElementById("seatsconfirmation").innerHTML=wholestring.substring(2);
+                    }
+                }
+            </script>
+    </body>

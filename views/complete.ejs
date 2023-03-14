@@ -1,0 +1,20 @@
+<%- include('./partials/head') %>
+
+    <script>
+
+    </script>
+
+    <meta charset="utf-8" />
+
+    <body style=" overflow-x: hidden;">
+        <%- include('./partials/nav') %>
+            <div class="m-5 text-center">
+                <div class="rounded shadow p-3">
+                    <h3>You've submitted your request for tickets! </h3>
+                    
+                    <div>For them to be processed, you must pay $25 at the link below.</div>
+                    <div>Your tickets are <b><%= seatstring %></b></div>
+                    <a href="/">Pay Now</a>
+                </div>
+            </div>
+    </body>

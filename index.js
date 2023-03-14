@@ -4,11 +4,15 @@ var ejs = require('ejs');
 ejs.open = '{{';
 ejs.close = '}}';
 
-app.use(require('cookie-session')({
-    name: 'namaste_cookie',
-    keys: ['kasljdflkajdsl2342','3242kljlkjwflksdja', '23423lkj09aldjflj', "243oadsf9uvnad8", "987234ks0283904", "s23423jlk", "09009009009a"],
-}));  
+const session = require('express-session');
 
+app.use(session({
+  secret: 'absdfasdlkjlkueoi68768',
+  resave: false,
+  name:"Sdf",
+  saveUninitialized: false,
+  // cookie: { secure: true }
+}))
 
 app.set('view engine','ejs')
 

@@ -50,6 +50,40 @@ a{
    /* align-items: center; */
 }
 
+.enter{
+   border-top: 0;
+   border-right: 0;
+   border-left: 0;
+   border-color: black;
+   background: none;
+}
+
+.enter:focus-visible{
+   outline: none;
+}
+
+.tickets h1{
+   padding-left: 3vw;
+   padding-right: 3vw;
+   padding-top: 1vh;
+   padding-bottom: 1vh;
+}
+
+.tickets div.row{
+   padding-left: 3vw;
+   padding-right: 3vw;
+   padding-top: 1vh;
+   padding-bottom: 1vh;
+}
+
+hr{
+   width: 100vw;
+   border: none;
+   height: 2px;
+   opacity: 1;
+   background: black;
+}
+
 .animatepop{
    animation-duration: 0.3s;
    animation-name: animate-pop;
@@ -122,6 +156,10 @@ a{
      opacity: 1;
      transform: scale(1, 1);
    }
+ }
+
+ .confirmbutton{
+   display: none;
  }
 
 .shine {
